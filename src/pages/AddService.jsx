@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../AuthContext/AuthContext'
+import Swal from 'sweetalert2'
 
 const AddService = () => {
     const [startDate, setStartDate] = useState(new Date())
@@ -32,13 +33,22 @@ const AddService = () => {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_URL}/add-service`, formData);
             // console.log('service added:', data);
-            alert('service added')
+            Swal.fire({
+                title: "New Service Added",
+                icon: "success",
+                draggable: true
+              });
             form.reset();
             navigate('/services')
         }
         catch (error) {
             console.error('Failed to add service:', error);
-            alert('Failed to connect to the server. Please try again later.');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong! Please Try Again",
+                
+              });
         }
     }
     return (
