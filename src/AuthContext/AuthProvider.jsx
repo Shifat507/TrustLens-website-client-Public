@@ -1,11 +1,14 @@
 import React, { Children, useEffect, useState } from 'react';
 // import AuthContext from './AuthContext';
 // import auth from "../../firebase/firebase.init";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import AuthContext from './AuthContext';
 import { GoogleAuthProvider } from 'firebase/auth';
 import auth from '../firebase/firebase.init';
+import { useNavigate } from 'react-router-dom';
 // import AuthContext from './AuthContext';
+
+
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)

@@ -8,7 +8,7 @@ import AuthContext from '../AuthContext/AuthContext';
 const Register = () => {
     const [error, setError] = useState('');
     const [firebaseError, setFirebaseError] = useState('');
-    const { createUser, setUser, userUpdateData, handleGoogleSignIn } = useContext(AuthContext);
+    const { createUser, setUser, userUpdateData } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -51,15 +51,7 @@ const Register = () => {
             console.log(err.message);
             setFirebaseError(err.message);
         })
-        // try {
-        //     const res = await createUser(email, password);
-        //     console.log('User created:', res.user);
-        //     alert('User created successfully!');
-        //     navigate('/');
-        // } catch (err) {
-        //     console.error('Error creating user:', err.message);
-        //     setFirebaseError(err.message);
-        // }
+        
     };
 
     return (
@@ -106,10 +98,7 @@ const Register = () => {
                             )}
                         </div>
                         <p>Already have an account ? <span className='text-blue-900'><Link to='/login'>Login Now</Link></span></p>
-                        <div>
-                            <div className='divider'>or</div>
-                            <button className='' onClick={handleGoogleSignIn}>Sing in with Gmail</button>
-                        </div>
+                    
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register Now</button>
                         </div>

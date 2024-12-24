@@ -5,13 +5,18 @@ import registrationLottie from '../assets/registration-lottie.json';
 import Lottie from 'lottie-react';
 import axios from 'axios';
 import AuthContext from '../AuthContext/AuthContext';
+import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
     const [firebaseError, setFirebaseError] = useState('');
-    const { userLogin } = useContext(AuthContext);
+    const { userLogin, handleGoogleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const formLocation = location.state || '/'
     const navigate = useNavigate();
     const [error, setError] = useState('');
+    const googleLogin = ()=>{
+        handleGoogleSignIn();
+        navigate('/')
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -63,10 +68,15 @@ const Login = () => {
                                 </label>
                             )}
                         </div>
+
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login Now</button>
                         </div>
                     </form>
+                    <div className='divider'>or</div>
+                    <div className='flex mx-auto mb-4'>
+                        <button onClick={googleLogin} className='btn btn-wide bg-slate-500 text-white hover:text-black'><FcGoogle size={20} /> Login With Google</button>
+                    </div>
                 </div>
             </div>
         </div>
