@@ -7,12 +7,17 @@ import Services from "../pages/Services";
 import MyReviews from "../pages/MyReviews";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
         children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
             {
                 path: '/services',
                 element: <Services></Services>
