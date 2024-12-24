@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/tinyLogo.jpg'
+import AuthContext from '../AuthContext/AuthContext';
 
 const Navbar = () => {
+    const { user, userSignOut } = useContext(AuthContext);
 
     const links = <>
         <li className='mx-2'><NavLink to='/'>Home</NavLink></li>
         <li className='mx-2'><NavLink to='/services'>Services</NavLink></li>
         <li className='mx-2'><NavLink to='/addService'>Add Service</NavLink></li>
-        <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>    
+        <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -44,8 +46,19 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login' className="btn">Login</Link>
+                {
+                    user ? <div className='mr-2'>
+                        <button onClick={userSignOut} className="btn btn-warning">Signout</button>
+                    </div> : <div className='flex items-center gap-2'>
+                        <div className='mr-2'>
+                            <Link to='/login' className="btn btn-primary">Login</Link>
+                        </div>
+                        <Link to='/register' className="btn btn-accent">Register</Link>
+                    </div>
+                }
+
             </div>
+
         </div>
     );
 };
