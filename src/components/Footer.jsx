@@ -11,7 +11,7 @@ const Footer = () => {
                     <p>TrustLens is a platform designed to foster transparency  and trust,<br /> enabling users to share and verify reliable <br />  information seamlessly.</p>
                 </nav>
                 <nav className="grid grid-flow-col gap-4">
-                    <a className="link link-hover">About us</a>
+                    <Link to='/aboutUs' className="link link-hover">About us</Link>
                     <a className="link link-hover">Contact</a>
                     <Link to='/services' className="link link-hover">Services</Link>
                     <Link to='/myReviews' className="link link-hover">Reviews</Link>

@@ -16,6 +16,7 @@ const Navbar = () => {
             user && 
             <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>
         }
+        <li className='mx-2'><NavLink to='/aboutUs'>About Us</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100">
