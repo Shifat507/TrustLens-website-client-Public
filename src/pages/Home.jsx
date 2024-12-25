@@ -30,8 +30,9 @@ const Home = () => {
             <div>
                 <ShortIntro></ShortIntro>
             </div>
+            {/* Frequently Ask Qus*/}
             <div className='w-11/12 mx-auto'>
-                <h1  className='text-3xl font-bold my-10 '>Frequently Ask Questions:</h1>
+                <h1  className='text-3xl font-bold my-10 '>Frequently Ask Questions</h1>
                 <FaqSection></FaqSection>
             </div>
         </div>
