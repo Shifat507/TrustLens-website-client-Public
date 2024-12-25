@@ -12,6 +12,8 @@ import PrivateRoute from "./PrivateRoute";
 import AboutUs from "../pages/AboutUs";
 import ErrorPage from "../pages/ErrorPage";
 import ServiceDetails from "../pages/ServiceDetails";
+import MyServicePage from "../pages/MyServicePage";
+import UpdateService from "../pages/UpdateService";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
             {
                 path: '/serviceDetails/:id',
                 element: <ServiceDetails></ServiceDetails>
+            },
+            {
+                path: '/myServices',
+                element:<MyServicePage></MyServicePage>
+            },
+            {
+                path: '/updateService/:id',
+                element:<UpdateService></UpdateService>
             }
         ]
     },

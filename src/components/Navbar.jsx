@@ -5,7 +5,7 @@ import AuthContext from '../AuthContext/AuthContext';
 
 const Navbar = () => {
     const { user, userSignOut } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
 
     const links = <>
         <li className='mx-2'><NavLink to='/'>Home</NavLink></li>
@@ -14,9 +14,13 @@ const Navbar = () => {
             user && <li className='mx-2'><NavLink to='/addService'>Add Service</NavLink></li>
         }
         {
+            user && <li className='mx-2'><NavLink to='/myServices'>My Services</NavLink></li>
+        }
+        {
             user &&
             <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>
         }
+
         <li className='mx-2'><NavLink to='/aboutUs'>About Us</NavLink></li>
     </>
     return (
