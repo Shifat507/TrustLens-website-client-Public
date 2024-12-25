@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyServicePage = () => {
     const { user } = useContext(AuthContext);
@@ -18,6 +19,32 @@ const MyServicePage = () => {
         setService(data);
 
     };
+    const handleDelete = async (id) => {
+        console.log('id: ', id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const { data } = await axios.delete(`${import.meta.env.VITE_URL}/services/${id}`);
+                // setService(data);
+                fetchData();
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+       
+        
+    }
+    // setService(data);
     console.log(service);
     return (
         <div>
@@ -31,8 +58,8 @@ const MyServicePage = () => {
 
                                 <th>Service</th>
                                 <th>Category</th>
-                                <th>Update</th>
                                 <th>Delete</th>
+                                <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +86,7 @@ const MyServicePage = () => {
                                         <span className="badge badge-ghost badge-sm">{myService.category}</span>
                                     </td>
                                     <td>
-                                        <button className="btn btn-ghost text-red-500"><MdDeleteForever size={35} /></button>
+                                        <button onClick={() => handleDelete(myService._id)} className="btn btn-ghost text-red-500"><MdDeleteForever size={35} /></button>
                                     </td>
                                     <td>
                                         <Link to={`/updateService/${myService._id}`}><button className="btn btn-ghost text-blue-500"><FaRegEdit size={30} /></button></Link>
