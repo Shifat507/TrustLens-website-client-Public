@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
-    const { image, title, description, category, price } = service;
+    const { image, title, description, category, price, _id } = service;
     return (
         <div className="card group w-72 bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 mx-auto">
             <figure className="relative w-full h-48 overflow-hidden">
@@ -22,7 +23,7 @@ const ServiceCard = ({ service }) => {
                     <div className="flex gap-2">
                         
                         <button className="btn btn-sm btn-secondary">
-                            <span>See Details</span>
+                            <Link to={`/serviceDetails/${_id}`}>See Details</Link>
                         </button>
                     </div>
                 </div>

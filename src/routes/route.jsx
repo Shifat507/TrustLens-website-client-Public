@@ -11,6 +11,7 @@ import Home from "../pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import AboutUs from "../pages/AboutUs";
 import ErrorPage from "../pages/ErrorPage";
+import ServiceDetails from "../pages/ServiceDetails";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: '/aboutUs',
                 element: <AboutUs></AboutUs>
+            },
+            {
+                path: '/serviceDetails/:id',
+                element: <ServiceDetails></ServiceDetails>
             }
         ]
     },
