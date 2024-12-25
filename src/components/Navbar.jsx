@@ -9,8 +9,13 @@ const Navbar = () => {
     const links = <>
         <li className='mx-2'><NavLink to='/'>Home</NavLink></li>
         <li className='mx-2'><NavLink to='/services'>Services</NavLink></li>
-        <li className='mx-2'><NavLink to='/addService'>Add Service</NavLink></li>
-        <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>
+        {
+            user && <li className='mx-2'><NavLink to='/addService'>Add Service</NavLink></li>
+        }
+        {
+            user && 
+            <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>
+        }
     </>
     return (
         <div className="navbar bg-base-100">
