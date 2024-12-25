@@ -5,6 +5,7 @@ import AuthContext from '../AuthContext/AuthContext';
 
 const Navbar = () => {
     const { user, userSignOut } = useContext(AuthContext);
+    console.log(user);
 
     const links = <>
         <li className='mx-2'><NavLink to='/'>Home</NavLink></li>
@@ -13,7 +14,7 @@ const Navbar = () => {
             user && <li className='mx-2'><NavLink to='/addService'>Add Service</NavLink></li>
         }
         {
-            user && 
+            user &&
             <li className='mx-2'><NavLink to='/myReviews'>My Reviews</NavLink></li>
         }
         <li className='mx-2'><NavLink to='/aboutUs'>About Us</NavLink></li>
@@ -53,7 +54,15 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <div className='mr-2'>
+                    user ? <div className='mr-2 flex items-center gap-3'>
+                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                            <div className="avatar">
+                                <div className="w-12 rounded-full">
+                                    <img src={user?.photoURL} />
+                                </div>
+                            </div>
+                        </div>
+
                         <button onClick={userSignOut} className="btn btn-warning">Signout</button>
                     </div> : <div className='flex items-center gap-2'>
                         <div className='mr-2'>
