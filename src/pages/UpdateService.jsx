@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import AuthContext from '../AuthContext/AuthContext';
+import Swal from 'sweetalert2';
 
 const UpdateService = () => {
     const [service, setService] = useState({});
@@ -46,7 +47,11 @@ const UpdateService = () => {
         try {
             const { data } = await axios.put(`${import.meta.env.VITE_URL}/update-service/${id}`, formData);
             
-            alert('Updated Successfully')
+            Swal.fire({
+                            title: "Successfully Updated",
+                            icon: "success",
+                            draggable: true
+                          });
             form.reset();
             navigate('/services')
         }
