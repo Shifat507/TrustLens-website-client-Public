@@ -25,16 +25,16 @@ const Login = () => {
         const password = form.password.value;
 
         const userInfo = { email, password };
-        console.log(userInfo);
+        // console.log(userInfo);
 
 
         userLogin(email, password)
             .then(async res => {
-                console.log(res.user);
+                // console.log(res.user);
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
-                console.log('Error: ', error.message);
+                // console.log('Error: ', error.message);
                 setError('Login failed. Invalid email or password');
             })
 

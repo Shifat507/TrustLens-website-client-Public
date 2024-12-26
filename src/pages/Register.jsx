@@ -32,7 +32,7 @@ const Register = () => {
         }
         createUser(email, password)
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
                 const user = res.user;
                 user.displayName = name;
                 user.photoURL = photoURL;
@@ -49,7 +49,7 @@ const Register = () => {
                     })
             })
             .catch(err => {
-                console.log(err.message);
+                // console.log(err.message);
                 setFirebaseError(err.message);
             })
 

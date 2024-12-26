@@ -1,8 +1,29 @@
-# React + Vite
+# TrustLens
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose
+TrustLens is a professional website designed to build credibility and foster trust by showcasing key partners and collaborators. It highlights the contributions and services of partners through a dedicated 'Meet Our Partners' section, reinforcing transparency and reliability.
 
-Currently, two official plugins are available:
+## Live URL
+[Visit TrustLens](#)
+(*Replace `#` with your live website URL once available*)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- **Meet Our Partners Section**: Features detailed partner information with logos, names, and descriptions.
+- **Responsive Design**: Built for seamless performance across devices using TailwindCSS and daisyUI.
+- **Modern UI/UX**: Sleek and visually appealing interface for a professional user experience.
+- **React Components**: Modular components for easy development and scalability.
+
+## Tech Stack
+- **Frontend**: React.js, TailwindCSS, daisyUI
+- **Icons**: React Icons
+
+
+## npm Packages Used
+- **React**: A JavaScript library for building user interfaces.
+- **React DOM**: For rendering React components in the browser.
+- **TailwindCSS**: A utility-first CSS framework for styling.
+- **daisyUI**: A TailwindCSS-based library for pre-styled UI components.
+- **React Icons**: For adding scalable vector icons.
+
+
+

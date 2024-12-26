@@ -28,7 +28,7 @@ const AddService = () => {
 
         const formData = { image, title, company, website, email, date, category, price, description };
 
-        console.log(formData);
+        // console.log(formData);
 
         //make a post req
         try {

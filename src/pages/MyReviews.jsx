@@ -21,7 +21,7 @@ const MyReviews = () => {
             console.error('Error fetching services:', error);
         }
     };
-    console.log(reviews);
+    // console.log(reviews);
     const removeReview = (id) => {
         setReviews((prevReviews) => prevReviews.filter(review => review._id !== id));
     };

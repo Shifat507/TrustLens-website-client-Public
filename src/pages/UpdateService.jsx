@@ -21,7 +21,7 @@ const UpdateService = () => {
         setService(data);
         setStartDate(new Date(data.date));
     };
-    console.log(service);
+    // console.log(service);
 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -41,8 +41,8 @@ const UpdateService = () => {
 
         const formData = { image, title, company, website, email, date, category, price, description };
 
-        console.log(formData);
-        console.log(id);
+        // console.log(formData);
+        // console.log(id);
 
         //make a post req
         try {
