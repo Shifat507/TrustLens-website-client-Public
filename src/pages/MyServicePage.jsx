@@ -14,7 +14,7 @@ const MyServicePage = () => {
 
     useEffect(() => {
         fetchData();
-    }, [user?.email]); // Fetch data initially and whenever the user email changes.
+    }, [user?.email]); 
 
     const fetchData = async () => {
         try {

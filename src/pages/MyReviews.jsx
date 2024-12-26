@@ -22,6 +22,7 @@ const MyReviews = () => {
         }
     };
     console.log(reviews);
+    
 
     return (
         <div>
