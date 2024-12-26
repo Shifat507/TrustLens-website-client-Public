@@ -22,7 +22,9 @@ const MyReviews = () => {
         }
     };
     console.log(reviews);
-    
+    const removeReview = (id) => {
+        setReviews((prevReviews) => prevReviews.filter(review => review._id !== id));
+    };
 
     return (
         <div>
@@ -33,7 +35,7 @@ const MyReviews = () => {
             {
                 reviews.length > 0 ? <div className='grid grid-cols-1 gap-5 w-11/12 mx-auto'>
                 {
-                    reviews.map((review, idx) => <ReviewCard key={idx} review={review}></ReviewCard>)
+                    reviews.map((review, idx) => <ReviewCard key={idx} review={review} removeReview={removeReview}></ReviewCard>)
                 }
             </div> : <p className='text-sm text-gray-400 text-center'>You do not review any service yet</p>
             }

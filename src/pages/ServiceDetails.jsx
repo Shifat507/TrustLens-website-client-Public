@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Rating } from "react-simple-star-rating";
 import { Helmet } from 'react-helmet-async';
 import AuthContext from '../AuthContext/AuthContext';
+import Swal from 'sweetalert2';
 
 const ServiceDetails = () => {
     const {user} = useContext(AuthContext);
@@ -14,6 +15,7 @@ const ServiceDetails = () => {
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState('');
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchData();
@@ -48,9 +50,14 @@ const ServiceDetails = () => {
 
         try {
             await axios.post(`${import.meta.env.VITE_URL}/add-review`, reviewData);
-            alert("Review submitted successfully!");
+            Swal.fire({
+                title: "Review Added",
+                icon: "success",
+                draggable: true
+              });
             setReviewText(''); // Clear the text area
             setRating(0); // Reset the rating
+            navigate('/services')
         } catch (error) {
             console.error("Error submitting review:", error);
             alert("Failed to submit review. Please try again.");

@@ -6,7 +6,7 @@ import { MdDateRange } from "react-icons/md";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { Rating } from "react-simple-star-rating";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, removeReview  }) => {
     const { _id, serviceId, serviceTitle, userName, userPhoto, reviewText, rating, date } = review;
 
 
@@ -68,9 +68,28 @@ const ReviewCard = ({ review }) => {
 
     const handleDelete = async (id) => {
         console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                await axios.delete(`${import.meta.env.VITE_URL}/my-reviews/${id}`);
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+                removeReview(id);
+            }
+        });
+
         
-        await axios.delete(`${import.meta.env.VITE_URL}/my-reviews/${id}`);
-        alert('deleted')
+        
     };
 
     return (
