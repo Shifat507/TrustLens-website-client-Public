@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ()=> fetch(`${import.meta.env.VITE_URL}/featured-services`)
+                // loader: ()=> fetch(`${import.meta.env.VITE_URL}/featured-services`)
 
             },
             {

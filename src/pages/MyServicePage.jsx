@@ -9,18 +9,26 @@ import Swal from 'sweetalert2';
 const MyServicePage = () => {
     const { user } = useContext(AuthContext);
     const [service, setService] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         fetchData();
-    }, [user?.email]);
+    }, [user?.email]); // Fetch data initially and whenever the user email changes.
 
     const fetchData = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_URL}/my-services/${user?.email}`);
-        setService(data);
-
+        try {
+            const { data } = await axios.get(`${import.meta.env.VITE_URL}/my-services/${user?.email}`, { params: { search } });
+            setService(data);
+        } catch (error) {
+            console.error('Error fetching services:', error);
+        }
     };
+
+    const handleSearch = () => {
+        fetchData(); 
+    };
+
     const handleDelete = async (id) => {
-        console.log('id: ', id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -29,33 +37,52 @@ const MyServicePage = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then(async(result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axios.delete(`${import.meta.env.VITE_URL}/services/${id}`);
-                // setService(data);
-                fetchData();
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+                try {
+                    await axios.delete(`${import.meta.env.VITE_URL}/services/${id}`);
+                    fetchData(); // Refresh the service list after deletion.
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } catch (error) {
+                    console.error('Error deleting service:', error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Could not delete the service.",
+                        icon: "error"
+                    });
+                }
             }
         });
-       
-        
-    }
-    // setService(data);
-    console.log(service);
+    };
+
     return (
         <div>
             <div className='w-11/12 mx-auto'>
+                <div className='flex justify-center my-10'>
+                    <div className="join">
+                        <input
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="input input-bordered join-item"
+                            placeholder="Search By Title"
+                            value={search}
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="btn join-item rounded-r-full bg-blue-500 hover:bg-blue-400"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
                 <h1 className='text-4xl font-bold'>My Services</h1>
                 <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
                         <thead>
                             <tr>
-
                                 <th>Service</th>
                                 <th>Category</th>
                                 <th>Delete</th>
@@ -63,17 +90,16 @@ const MyServicePage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* row 1 */}
-                            {
-                                service && service.map((myService, idx) => <tr key={idx}>
-
+                            {service && service.map((myService, idx) => (
+                                <tr key={idx}>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle h-12 w-12">
                                                     <img
                                                         src={myService.image}
-                                                        alt="Avatar Tailwind CSS Component" />
+                                                        alt="Service Thumbnail"
+                                                    />
                                                 </div>
                                             </div>
                                             <div>
@@ -86,17 +112,20 @@ const MyServicePage = () => {
                                         <span className="badge badge-ghost badge-sm">{myService.category}</span>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDelete(myService._id)} className="btn btn-ghost text-red-500"><MdDeleteForever size={35} /></button>
+                                        <button onClick={() => handleDelete(myService._id)} className="btn btn-ghost text-red-500">
+                                            <MdDeleteForever size={35} />
+                                        </button>
                                     </td>
                                     <td>
-                                        <Link to={`/updateService/${myService._id}`}><button className="btn btn-ghost text-blue-500"><FaRegEdit size={30} /></button></Link>
+                                        <Link to={`/updateService/${myService._id}`}>
+                                            <button className="btn btn-ghost text-blue-500">
+                                                <FaRegEdit size={30} />
+                                            </button>
+                                        </Link>
                                     </td>
-                                </tr>)
-
-                            }
-
+                                </tr>
+                            ))}
                         </tbody>
-
                     </table>
                 </div>
             </div>

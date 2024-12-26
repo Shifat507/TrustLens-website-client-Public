@@ -144,6 +144,7 @@ const AddService = () => {
                                     id='category'
                                     className='border p-2 rounded-md'
                                 >
+                                    <option  value=''>Select Category</option>
                                     <option value='Event Planning'>Event Planning</option>
                                     <option value='Business Services'>Business Services</option>
                                     <option value='Health & Wellness'>Health & Wellness</option>
