@@ -3,6 +3,7 @@ import { Link, Links, useNavigate } from 'react-router-dom';
 import registrationLottie from '../assets/registration-lottie.json';
 import Lottie from 'lottie-react';
 import AuthContext from '../AuthContext/AuthContext';
+import { Helmet } from 'react-helmet-async';
 // import AuthContext from '../context/AuthContext/AuthContext';
 
 const Register = () => {
@@ -30,32 +31,35 @@ const Register = () => {
             return;
         }
         createUser(email, password)
-        .then(res=> {
-            console.log(res.user);
-            const user = res.user;
+            .then(res => {
+                console.log(res.user);
+                const user = res.user;
                 user.displayName = name;
                 user.photoURL = photoURL;
 
                 setUser(user);
                 userUpdateData({
-                    displayName:name, photoURL:photoURL
+                    displayName: name, photoURL: photoURL
                 })
-                .then(() =>{
-                    navigate('/');
-                })
-                .catch(error =>{
-                    
-                }) 
-        })
-        .catch(err =>{
-            console.log(err.message);
-            setFirebaseError(err.message);
-        })
-        
+                    .then(() => {
+                        navigate('/');
+                    })
+                    .catch(error => {
+
+                    })
+            })
+            .catch(err => {
+                console.log(err.message);
+                setFirebaseError(err.message);
+            })
+
     };
 
     return (
         <div className="hero bg-base-200 min-h-screen">
+            <Helmet>
+                <title>TrustLens | Register</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={registrationLottie} />
@@ -98,7 +102,7 @@ const Register = () => {
                             )}
                         </div>
                         <p>Already have an account ? <span className='text-blue-900'><Link to='/login'>Login Now</Link></span></p>
-                    
+
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register Now</button>
                         </div>

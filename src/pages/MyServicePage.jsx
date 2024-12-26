@@ -5,6 +5,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyServicePage = () => {
     const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const MyServicePage = () => {
     };
 
     const handleSearch = () => {
-        fetchData(); 
+        fetchData();
     };
 
     const handleDelete = async (id) => {
@@ -61,6 +62,9 @@ const MyServicePage = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>TrustLens | My Services</title>
+            </Helmet>
             <div className='w-11/12 mx-auto'>
                 <div className='flex justify-center my-10'>
                     <div className="join">

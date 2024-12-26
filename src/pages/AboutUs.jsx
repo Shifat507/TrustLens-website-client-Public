@@ -1,13 +1,17 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { FaHandshake, FaUsers, FaGlobe } from 'react-icons/fa';
 
 const AboutUs = () => {
   return (
     <div className="bg-base-100 py-12 px-6 md:px-12">
+      <Helmet>
+        <title>TrustLens | About Us</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-primary mb-6">About Us</h2>
         <p className="text-base-content mb-8 text-lg">
-          Welcome to <span className="text-secondary font-semibold">TrustLens</span>, where transparency and trust meet innovation. Our mission is to foster 
+          Welcome to <span className="text-secondary font-semibold">TrustLens</span>, where transparency and trust meet innovation. Our mission is to foster
           strong collaborations and deliver exceptional value by connecting organizations, people, and ideas worldwide.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

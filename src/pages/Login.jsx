@@ -6,6 +6,7 @@ import Lottie from 'lottie-react';
 import axios from 'axios';
 import AuthContext from '../AuthContext/AuthContext';
 import { FcGoogle } from 'react-icons/fc';
+import { Helmet } from 'react-helmet-async';
 const Login = () => {
     const [firebaseError, setFirebaseError] = useState('');
     const { userLogin, handleGoogleSignIn } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const Login = () => {
     const formLocation = location.state || '/'
     const navigate = useNavigate();
     const [error, setError] = useState('');
-    const googleLogin = ()=>{
+    const googleLogin = () => {
         handleGoogleSignIn();
         navigate('/')
     }
@@ -41,6 +42,9 @@ const Login = () => {
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
+            <Helmet>
+                <title>TrustLens | Login</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={registrationLottie} />

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Rating } from "react-simple-star-rating";
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetails = () => {
     const [service, setService] = useState({});
@@ -20,7 +21,7 @@ const ServiceDetails = () => {
         setService(data);
         setStartDate(new Date(data.deadline));
     };
-    
+
 
     const { image, title, company, website, email, date, category, price, description } = service;
     const handleRating = (rate) => {
@@ -29,6 +30,9 @@ const ServiceDetails = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 py-8">
+            <Helmet>
+                <title>TrustLens | Service Details</title>
+            </Helmet>
             <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
                 <div className="flex flex-col">
                     <div className="lg:w-full">
@@ -55,7 +59,7 @@ const ServiceDetails = () => {
                                     ratingValue={service.rating}
                                 // className="inline"
                                 />
-                                
+
                             </div>
                         </div>
 

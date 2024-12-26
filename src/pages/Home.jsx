@@ -5,12 +5,16 @@ import ServiceCard from '../components/ServiceCard';
 import MeetOurPartners from '../components/MeetOurPartners';
 import ShortIntro from '../components/ShortIntro';
 import FaqSection from '../components/FaqSection';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     const featuredData = useLoaderData();
 
     return (
         <div>
+            <Helmet>
+                <title>TrustLens | Home</title>
+            </Helmet>
             <Carousel></Carousel>
             {/* Featured Section */}
             <div className='w-11/12 mx-auto'>

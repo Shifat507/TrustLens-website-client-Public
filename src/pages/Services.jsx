@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ServiceCard from '../components/ServiceCard';
+import { Helmet } from 'react-helmet-async';
 
 const Services = () => {
     const [services, setServices] = useState([]); // Updated variable name for clarity
@@ -25,6 +26,9 @@ const Services = () => {
 
     return (
         <div className='w-11/12 mx-auto'>
+            <Helmet>
+                <title>TrustLens | Services</title>
+            </Helmet>
             <div className='flex justify-between items-center'>
                 <div>
                     <h1 className="text-4xl font-bold">All Services: {services.length}</h1>

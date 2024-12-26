@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../AuthContext/AuthContext'
 import Swal from 'sweetalert2'
+import { Helmet } from 'react-helmet-async'
 
 const AddService = () => {
     const [startDate, setStartDate] = useState(new Date())
@@ -53,6 +54,9 @@ const AddService = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>TrustLens | Add Service</title>
+            </Helmet>
             <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
                 <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-lg '>
                     <h2 className='text-lg font-semibold text-gray-700 capitalize '>

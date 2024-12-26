@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import AuthContext from '../AuthContext/AuthContext';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateService = () => {
     const [service, setService] = useState({});
@@ -46,12 +47,12 @@ const UpdateService = () => {
         //make a post req
         try {
             const { data } = await axios.put(`${import.meta.env.VITE_URL}/update-service/${id}`, formData);
-            
+
             Swal.fire({
-                            title: "Successfully Updated",
-                            icon: "success",
-                            draggable: true
-                          });
+                title: "Successfully Updated",
+                icon: "success",
+                draggable: true
+            });
             form.reset();
             navigate('/services')
         }
@@ -63,6 +64,9 @@ const UpdateService = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>TrustLens | Update Service</title>
+            </Helmet>
             <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
                 <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-lg '>
                     <h2 className='text-lg font-semibold text-gray-700 capitalize '>

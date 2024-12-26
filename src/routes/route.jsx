@@ -24,23 +24,23 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                // loader: ()=> fetch(`${import.meta.env.VITE_URL}/featured-services`)
+                loader: ()=> fetch(`${import.meta.env.VITE_URL}/featured-services`)
 
             },
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: ()=> fetch(`${import.meta.env.VITE_URL}/services`)
+                // loader: ()=> fetch(`${import.meta.env.VITE_URL}/services`)
 
             },
             {
                 path: '/addService',
                 element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
-            {
-                path: '/services',
-                element: <Services></Services>
-            },
+            // {
+            //     path: '/services',
+            //     element: <Services></Services>
+            // },
             {
                 path: '/myReviews',
                 element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
