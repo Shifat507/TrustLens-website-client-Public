@@ -4,8 +4,8 @@
 TrustLens is a professional website designed to build credibility and foster trust by showcasing key partners and collaborators. It highlights the contributions and services of partners through a dedicated 'Meet Our Partners' section, reinforcing transparency and reliability.
 
 ## Live URL
-[Visit TrustLens](#)
-(*Replace `#` with your live website URL once available*)
+[Visit TrustLens](https://trust-lens.web.app/)
+
 
 ## Key Features
 - **Meet Our Partners Section**: Features detailed partner information with logos, names, and descriptions.
