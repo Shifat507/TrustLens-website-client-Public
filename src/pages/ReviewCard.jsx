@@ -95,33 +95,33 @@ const ReviewCard = ({ review, removeReview  }) => {
     return (
         <>
             {/* Review Card */}
-            <div className="card card-side bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-xl w-3/4 hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto">
+            <div className="card card-side bg-gradient-to-r from-green-500 to-green-300 text-white shadow-xl w-3/4 hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto">
                 <figure className="flex items-center pl-4">
                     <img
                         src={userPhoto}
                         alt="User"
-                        className="rounded-full w-24 h-24 border-4 border-white shadow-md"
+                        className="rounded-full w-32 h-32 border-4 border-white shadow-md"
                     />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title text-2xl font-bold">{serviceTitle}</h2>
-                    <h2 className="text-lg font-semibold flex items-center gap-2">
+                    <h2 className="text-xl font-semibold flex items-center gap-2">
                         <span className="text-yellow-300">
                             <AiFillStar />
                         </span>
                         {updatedRating}/5
                     </h2>
-                    <h3 className="text-lg flex items-center gap-2">
+                    <h3 className="text-xl flex items-center gap-2">
                         <span className="font-medium">Reviewer:</span> {userName}
                     </h3>
-                    <p className="text-sm italic opacity-90 mt-2">
+                    <p className="text-lg italic opacity-90 mt-1">
                         "{updatedReviewText}"
                     </p>
-                    <div className="flex items-center text-sm mt-4 gap-2">
-                        <MdDateRange />
-                        <span>{date}</span>
+                    <div className="flex items-center text-sm mt-1 gap-2">
+                        <MdDateRange size={25}/>
+                        <span className="text-lg">{date}</span>
                     </div>
-                    <div className="card-actions justify-end mt-4 flex gap-2">
+                    <div className="card-actions justify-end mt-1 flex gap-2">
                         <button
                             onClick={showModal}
                             className="btn btn-accent btn-sm flex items-center gap-2 px-4 rounded-full"

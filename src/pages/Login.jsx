@@ -64,7 +64,7 @@ const Login = () => {
                             </label>
                             <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                             <label className="label">
-                                <p className="label-text-alt text-base-500">Do not have account? <span className='underline'><Link to='/register'>Register Now</Link></span></p>
+                                <p className="label-text-alt text-base-500">Do not have account? <span className='underline text-blue-600'><Link to='/register'>Register Now</Link></span></p>
                             </label>
                             {firebaseError && (
                                 <label className="label">

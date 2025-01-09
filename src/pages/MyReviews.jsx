@@ -27,17 +27,17 @@ const MyReviews = () => {
     };
 
     return (
-        <div>
+        <div >
             <Helmet>
                 <title>TrustLens | My Reviews</title>
             </Helmet>
-            <h1 className='text-4xl font-bold my-10 text-center'>My Reviews : {reviews.length}</h1>
+            <h1 className='text-4xl font-bold mt-28 mb-16 text-center'>My Review :  <span className='text-3xl font-semibold'>{reviews.length} reviews</span></h1>
             {
                 reviews.length > 0 ? <div className='grid grid-cols-1 gap-5 w-11/12 mx-auto'>
                 {
                     reviews.map((review, idx) => <ReviewCard key={idx} review={review} removeReview={removeReview}></ReviewCard>)
                 }
-            </div> : <p className='text-sm text-gray-400 text-center'>You do not review any service yet</p>
+            </div> : <p className='text-sm text-gray-400 text-center min-h-screen'>You do not review any service yet</p>
             }
 
 

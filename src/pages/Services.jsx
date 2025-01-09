@@ -6,9 +6,11 @@ import { Helmet } from 'react-helmet-async';
 const Services = () => {
     const [services, setServices] = useState([]); // Updated variable name for clarity
     const [filter, setFilter] = useState(''); // State to manage selected filter
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchServices = async () => {
+            setIsLoading(true);
             try {
                 // Fetch services based on the selected filter
                 const { data } = await axios.get(
@@ -18,6 +20,8 @@ const Services = () => {
                 setServices(data);
             } catch (error) {
                 // console.error('Failed to fetch services:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -25,7 +29,7 @@ const Services = () => {
     }, [filter]);
 
     return (
-        <div className='w-11/12 mx-auto'>
+        <div className='w-11/12 mx-auto min-h-screen mt-16 mb-16'>
             <Helmet>
                 <title>TrustLens | Services</title>
             </Helmet>
@@ -56,16 +60,24 @@ const Services = () => {
             </div>
 
             {/* Display Services */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
-                {services.length > 0 ? (
-                    services.map((service) => (
-                        <ServiceCard key={service._id} service={service} />
-                    ))
-                ) : (
-                    <p className="col-span-full text-center text-gray-500">
-                        No services found for the selected category.
-                    </p>
-                )}
+            <div>
+                {
+                    isLoading ?
+                        <div className='flex justify-center mt-10'>
+                            <span className="loading loading-bars loading-lg mx-auto"></span>
+                        </div> :
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
+                            {services.length > 0 ? (
+                                services.map((service) => (
+                                    <ServiceCard key={service._id} service={service} />
+                                ))
+                            ) : (
+                                <p className="col-span-full text-center text-gray-500">
+                                    No services found for the selected category.
+                                </p>
+                            )}
+                        </div>
+                }
             </div>
         </div>
     );

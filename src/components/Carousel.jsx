@@ -18,7 +18,7 @@ import bgimg4 from '../assets/bannerImg/Business-services-Photoroom.jpg'
 
 const Carousel = () => {
     return (
-        <div className='container px-6 py-10 mx-auto'>
+        <div className='container px-6 w-full mx-auto'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

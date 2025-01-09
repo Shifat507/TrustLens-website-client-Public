@@ -21,12 +21,12 @@ const Home = () => {
                 <h1 className='text-3xl font-bold my-10'>Featured Services</h1>
                 <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto'>
                     {
-                        featuredData.map(service => <ServiceCard service={service}></ServiceCard>)
+                        featuredData.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                     }
 
                 </div>
                 <div className='flex justify-center my-10'>
-                    <button className='btn btn-accent'><Link to='/services'>See Details</Link></button>
+                    <button className='mt-6 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition'><Link to='/services'>See All Services</Link></button>
                 </div>
             </div>
             {/* Meet Our Partner Section */}
