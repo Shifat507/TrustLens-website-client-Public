@@ -9,9 +9,9 @@ const ShortIntro = () => {
                 {/* Left Section */}
                 <div className='flex flex-col md:flex-row items-center justify-evenly mx-auto'>
                     <div>
-                        <Lottie className='w-[420px]' animationData={reviewLottie}></Lottie>
+                        <Lottie className='md:w-[420px]' animationData={reviewLottie}></Lottie>
                     </div>
-                    <div className="max-w-md text-center lg:text-left">
+                    <div className="md:max-w-md text-center lg:text-left">
                         <h2 className="text-2xl lg:text-3xl font-bold text-gray-800">
                             We're TrustLens
                         </h2>

@@ -41,15 +41,15 @@ const Login = () => {
 
     }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-base-200 min-h-screen mt-16">
             <Helmet>
                 <title>TrustLens | Login</title>
             </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left w-96">
+                <div className="text-center lg:text-left md:w-96">
                     <Lottie animationData={registrationLottie} />
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card bg-base-100 md:w-full max-w-sm shrink-0 shadow-2xl">
                     <form onSubmit={handleSubmit} className="card-body">
                         <h1 className="text-3xl font-bold mx-auto my-5">Login Now!</h1>
                         <div className="form-control">

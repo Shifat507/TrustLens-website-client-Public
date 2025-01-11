@@ -1,11 +1,12 @@
 import React from 'react';
-import Carousel from '../components/Carousel';
+// import Carousel from '../components/Carousel';
 import { Link, useLoaderData } from 'react-router-dom';
 import ServiceCard from '../components/ServiceCard';
 import MeetOurPartners from '../components/MeetOurPartners';
 import ShortIntro from '../components/ShortIntro';
 import FaqSection from '../components/FaqSection';
 import { Helmet } from 'react-helmet-async';
+import Banner from '../components/Banner';
 
 const Home = () => {
     const featuredData = useLoaderData();
@@ -15,9 +16,11 @@ const Home = () => {
             <Helmet>
                 <title>TrustLens | Home</title>
             </Helmet>
-            <Carousel></Carousel>
+
+            <Banner></Banner>
+
             {/* Featured Section */}
-            <div className='w-11/12 mx-auto'>
+            <div className='w-11/12 mx-auto md:mt-28'>
                 <h1 className='text-3xl font-bold my-10'>Featured Services</h1>
                 <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto'>
                     {

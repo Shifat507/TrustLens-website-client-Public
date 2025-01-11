@@ -65,7 +65,37 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                         >
-                            {links}
+                            <li className="mx-2">
+                                <NavLink to="/">Home</NavLink>
+                            </li>
+                            <li className="mx-2">
+                                <NavLink to="/services">Services</NavLink>
+                            </li>
+                            {user && (
+                                <li className="mx-2">
+                                    <NavLink to="/addService">Add Service</NavLink>
+                                </li>
+                            )}
+                            {user && (
+                                <li className="mx-2">
+                                    <NavLink to="/myServices">My Services</NavLink>
+                                </li>
+                            )}
+                            {user && (
+                                <li className="mx-2">
+                                    <NavLink to="/myReviews">My Reviews</NavLink>
+                                </li>
+                            )}
+                            <li className="mx-2">
+                                <NavLink to="/aboutUs">About Us</NavLink>
+                            </li>
+                            <li className="mx-2">
+                                {
+                                    user && <button onClick={userSignOut}>
+                                        <NavLink >Signout</NavLink>
+                                    </button>
+                                }
+                            </li>
                         </ul>
                     </div>
                     <Link to="/">
@@ -77,7 +107,9 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">{links}</ul>
+                    <ul className="menu menu-horizontal px-1">
+                        {links}
+                    </ul>
                 </div>
                 <div className="navbar-end">
                     {user ? (
@@ -97,7 +129,7 @@ const Navbar = () => {
                             </div>
                             <button
                                 onClick={userSignOut}
-                                className="px-6 py-3 bg-gray-500 text-white rounded-full hover:bg-gray-900 hover:text-white transition flex items-center gap-2"
+                                className="px-6 hidden  py-3 bg-gray-500 text-white rounded-full hover:bg-gray-900 hover:text-white transition md:flex items-center gap-2"
                             >
                                 Signout <FaSignOutAlt size={20} />
                             </button>

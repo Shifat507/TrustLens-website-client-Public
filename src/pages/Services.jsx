@@ -33,9 +33,9 @@ const Services = () => {
             <Helmet>
                 <title>TrustLens | Services</title>
             </Helmet>
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-col md:flex-row justify-between items-center '>
                 <div>
-                    <h1 className="text-4xl font-bold">All Services: {services.length}</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mt-6">All Services: {services.length}</h1>
                 </div>
 
                 <div>
