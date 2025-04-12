@@ -129,19 +129,24 @@ const Navbar = () => {
                             </div>
                             <button
                                 onClick={userSignOut}
-                                className="px-6 hidden  py-3 bg-gray-500 text-white rounded-full hover:bg-gray-900 hover:text-white transition md:flex items-center gap-2"
+                                className="hidden  gap-2 px-4 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-700 hover:cursor-pointer md:flex items-center"
                             >
                                 Signout <FaSignOutAlt size={20} />
                             </button>
                         </div>
                     ) : (
-                        <div className="flex items-center gap-2">
-                            <Link
-                                to="/login"
-                                className="px-6 py-3 bg-gray-500 text-white rounded-full hover:bg-gray-900 hover:text-white transition flex items-center gap-2"
-                            >
-                                Login <IoMdLogIn size={20} />
-                            </Link>
+                        <div className="flex items-center gap-2 px-4 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-700 hover:cursor-pointer">
+                            <div>
+                                <Link
+                                    to="/login"
+                                    className=""
+                                >
+                                    Login
+                                </Link>
+                            </div>
+                            <div>
+                                <IoMdLogIn size={20} />
+                            </div>
                         </div>
                     )}
                 </div>

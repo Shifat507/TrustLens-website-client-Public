@@ -29,19 +29,22 @@ const Services = () => {
     }, [filter]);
 
     return (
-        <div className='w-11/12 mx-auto min-h-screen mt-16 mb-16'>
+        <div className='w-11/12 mx-auto min-h-screen mt-24'>
             <Helmet>
                 <title>TrustLens | Services</title>
             </Helmet>
-            <div className='flex flex-col md:flex-row justify-between items-center '>
+            <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-bold mt-6">All Services: {services.length}</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold ">All Services: {services.length}</h1>
                 </div>
 
-                <div>
-                    <div className="flex flex-col gap-2 w-48 my-10">
-                        <label className="text-gray-700 font-semibold" htmlFor="category">
-                            Filter by Category
+
+            </div>
+            <div className='flex justify-center'>
+                <div className="flex items-center gap-2 my-8 ">
+                    <div>
+                        <label className="md:text-xl text-gray-700 font-semibold mr-2" htmlFor="category">
+                            Filter Services 
                         </label>
                         <select
                             onChange={(e) => setFilter(e.target.value)}
