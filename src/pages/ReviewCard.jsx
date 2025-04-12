@@ -6,157 +6,120 @@ import { MdDateRange } from "react-icons/md";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { Rating } from "react-simple-star-rating";
 
-const ReviewCard = ({ review, removeReview  }) => {
-    const { _id, serviceId, serviceTitle, userName, userPhoto, reviewText, rating, date } = review;
-
+const ReviewCard = ({ review, removeReview }) => {
+    const { _id, serviceTitle, userName, userPhoto, reviewText, rating, date } = review;
 
     const [modalData, setModalData] = useState({ rating, reviewText });
     const [updatedRating, setUpdatedRating] = useState(rating);
     const [updatedReviewText, setUpdatedReviewText] = useState(reviewText);
 
-
     const handleRating = (rate) => {
         setModalData((prev) => ({ ...prev, rating: rate }));
     };
 
-    // Function to show modal
     const showModal = () => {
-        setModalData({ rating: updatedRating, reviewText: updatedReviewText }); // Set default values
-        const modal = document.getElementById("my_modal_5");
-        if (modal) {
-            modal.showModal();
-        } else {
-            console.error("Modal element not found");
-        }
+        setModalData({ rating: updatedRating, reviewText: updatedReviewText });
+        document.getElementById("review_modal").showModal();
     };
 
-    // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
         const updatedReview = form.updatedReview.value;
 
-        // Prepare form data for PUT request
         const formData = {
             rating: modalData.rating,
             reviewText: updatedReview,
         };
 
         try {
-            const { data } = await axios.put(
-                `${import.meta.env.VITE_URL}/update-review/${_id}`,
-                formData
-            );
+            await axios.put(`${import.meta.env.VITE_URL}/update-review/${_id}`, formData);
+            Swal.fire("Updated!", "Your review has been updated.", "success");
 
-            Swal.fire({
-                title: "Successfully Updated",
-                icon: "success",
-                draggable: true,
-            });
-
-            // Update the local state with the updated data
             setUpdatedRating(modalData.rating);
             setUpdatedReviewText(updatedReview);
-
-            // Close the modal
-            document.getElementById("my_modal_5").close();
+            document.getElementById("review_modal").close();
         } catch (error) {
-            console.error("Failed to Update:", error);
-            alert("Failed to connect to the server. Please try again later...");
+            console.error("Update failed:", error);
+            Swal.fire("Error", "Failed to update. Try again later.", "error");
         }
     };
 
     const handleDelete = async (id) => {
-        // console.log(id);
-        Swal.fire({
+        const confirm = await Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "This review will be permanently deleted.",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then(async(result) => {
-            if (result.isConfirmed) {
-                await axios.delete(`${import.meta.env.VITE_URL}/my-reviews/${id}`);
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-                removeReview(id);
-            }
+            confirmButtonText: "Delete",
+            confirmButtonColor: "#e74c3c",
         });
 
-        
-        
+        if (confirm.isConfirmed) {
+            await axios.delete(`${import.meta.env.VITE_URL}/my-reviews/${id}`);
+            Swal.fire("Deleted", "The review has been removed.", "success");
+            removeReview(id);
+        }
     };
 
     return (
         <>
-            {/* Review Card */}
-            <div className="card card-side bg-gradient-to-r from-green-500 to-green-300 text-white shadow-xl w-3/4 hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto">
-                <figure className="flex items-center pl-4">
+            <div className="w-full max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden p-6 mb-6 border border-gray-200 hover:shadow-lg transition duration-300">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                     <img
                         src={userPhoto}
-                        alt="User"
-                        className="rounded-full w-32 h-32 border-4 border-white shadow-md"
+                        alt={userName}
+                        className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
                     />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title text-2xl font-bold">{serviceTitle}</h2>
-                    <h2 className="text-xl font-semibold flex items-center gap-2">
-                        <span className="text-yellow-300">
+                    <div className="flex-1 space-y-2">
+                        <h2 className="text-xl font-semibold text-gray-800">{serviceTitle}</h2>
+                        <div className="flex items-center text-yellow-500 gap-1">
                             <AiFillStar />
-                        </span>
-                        {updatedRating}/5
-                    </h2>
-                    <h3 className="text-xl flex items-center gap-2">
-                        <span className="font-medium">Reviewer:</span> {userName}
-                    </h3>
-                    <p className="text-lg italic opacity-90 mt-1">
-                        "{updatedReviewText}"
-                    </p>
-                    <div className="flex items-center text-sm mt-1 gap-2">
-                        <MdDateRange size={25}/>
-                        <span className="text-lg">{date}</span>
-                    </div>
-                    <div className="card-actions justify-end mt-1 flex gap-2">
-                        <button
-                            onClick={showModal}
-                            className="btn btn-accent btn-sm flex items-center gap-2 px-4 rounded-full"
-                        >
-                            <FiEdit2 />
-                            Update
-                        </button>
-                        <button onClick={() => handleDelete(_id)} className="btn btn-error btn-sm flex items-center gap-2 px-4 rounded-full">
-                            <FiTrash2 />
-                            Delete
-                        </button>
+                            <span className="text-base font-medium text-gray-700">{updatedRating} / 5</span>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                            <span className="font-medium">Reviewer:</span> {userName}
+                        </p>
+                        <p className="text-gray-700 italic">"{updatedReviewText}"</p>
+                        <div className="flex items-center text-gray-500 text-sm gap-2">
+                            <MdDateRange size={20} />
+                            {date}
+                        </div>
+                        <div className="flex gap-2 mt-2">
+                            <button
+                                onClick={showModal}
+                                className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center gap-1"
+                            >
+                                <FiEdit2 /> Edit
+                            </button>
+                            <button
+                                onClick={() => handleDelete(_id)}
+                                className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center gap-1"
+                            >
+                                <FiTrash2 /> Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Modal */}
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box relative bg-white rounded-lg shadow-lg p-6">
-                    <h3 className="text-lg font-bold text-center bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 rounded-t-lg">
-                        Update Review
-                    </h3>
-                    <form onSubmit={handleSubmit} method="dialog" className="space-y-6">
+            <dialog id="review_modal" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box p-6 bg-white rounded-lg">
+                    <h3 className="text-lg font-semibold text-center mb-4">Update Your Review</h3>
+                    <form onSubmit={handleSubmit} method="dialog" className="space-y-4">
                         <div>
-                            <p className="text-gray-700 font-medium mb-2">Give Rating:</p>
-                            <div className="flex items-center gap-4">
-                                <Rating
-                                    onClick={handleRating}
-                                    ratingValue={modalData.rating}
-                                    initialValue={modalData.rating}
-                                />
-                            </div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Rating:
+                            </label>
+                            <Rating
+                                onClick={handleRating}
+                                ratingValue={modalData.rating}
+                                initialValue={modalData.rating}
+                            />
                         </div>
                         <div>
-                            <label className="block font-medium mb-2 text-gray-700">
-                                Your Review:
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Review:
                             </label>
                             <textarea
                                 name="updatedReview"
@@ -164,19 +127,23 @@ const ReviewCard = ({ review, removeReview  }) => {
                                 onChange={(e) =>
                                     setModalData((prev) => ({ ...prev, reviewText: e.target.value }))
                                 }
-                                className="textarea textarea-bordered w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                className="textarea textarea-bordered w-full focus:ring focus:ring-blue-300"
                                 rows="4"
+                                required
                             ></textarea>
                         </div>
-                        <div className="flex justify-end gap-4">
-                            <button type="submit" className="btn btn-primary rounded-full hover:shadow-lg">
-                                Update Review
+                        <div className="flex justify-end gap-2 mt-4">
+                            <button
+                                type="submit"
+                                className="btn btn-primary px-4 py-2 text-sm font-medium rounded-full"
+                            >
+                                Save Changes
                             </button>
                         </div>
                     </form>
                     <button
                         className="btn btn-sm btn-circle absolute right-2 top-2"
-                        onClick={() => document.getElementById("my_modal_5").close()}
+                        onClick={() => document.getElementById("review_modal").close()}
                     >
                         ✕
                     </button>

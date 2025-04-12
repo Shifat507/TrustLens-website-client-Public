@@ -179,8 +179,8 @@ const AddService = () => {
                                 id='description'
                             ></textarea>
                         </div>
-                        <div className='flex justify-end mt-6'>
-                            <button className='disabled:cursor-not-allowed px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'>
+                        <div className='flex justify-center mt-6'>
+                            <button className='px-8 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-700 hover:cursor-pointer md:flex items-center'>
                                 Add Service
                             </button>
                         </div>
